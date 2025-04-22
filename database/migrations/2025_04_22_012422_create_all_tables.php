@@ -29,6 +29,7 @@ return new class extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->string('id_produk',10)->primary();
             $table->string('nama',100);
+            $table->enum('kategori',['handphone & aksesoris','komputer & aksesoris','audio visual','peralatan rumah tangga elektronik']);
             $table->unsignedInteger('harga');
             $table->unsignedInteger('stok')->default(0);
             $table->timestamps();

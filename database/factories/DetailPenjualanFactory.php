@@ -13,15 +13,23 @@ class DetailPenjualanFactory extends Factory
 
     public function definition(): array
     {
+        $produk = Produk::inRandomOrder()->first();
+        
+        $harga = $produk->harga;
+        $produkId = $produk?->id_produk;
+
+        $randomNum = rand(1,3);
+        $subTotal = $harga * $randomNum;
+
         return [
             // Generate id_detail seperti D0001, D0002,
             'id_detail' => 'D' . $this->faker->unique()->numberBetween(1000, 9999),
             // Ambil id_penjualan yang sudah ada di tabel penjualan
             'id_penjualan' => Penjualan::factory(),
             // Ambil id_produk yang sudah ada di tabel produk
-            'id_produk' => Produk::inRandomOrder()->first()?->id_produk,
-            'jumlah_barang' => $this->faker->numberBetween(1, 10),
-            'sub_total' => $this->faker->numberBetween(100, 1000),
+            'id_produk' => $produkId,
+            'jumlah_barang' => $randomNum,
+            'sub_total' => $subTotal,
         ];
     }
 }

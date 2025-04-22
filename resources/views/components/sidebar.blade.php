@@ -22,7 +22,7 @@
                     class="relative rounded-r-2xl hover:bg-[#4363D0] mr-2 px-4 py-2 text-[#F7F8FF] bg-[#1E1C29] transition ">
                     Data Produk
                 </a>
-                <a href="{{ route('penjualan.index') }}"
+                <a href="{{ route('kasir.create') }}"
                     class="relative rounded-r-2xl hover:bg-[#4363D0] mr-2 px-4 py-2 text-[#F7F8FF] bg-[#1E1C29] transition ">
                     Manu Kasir
                 </a>

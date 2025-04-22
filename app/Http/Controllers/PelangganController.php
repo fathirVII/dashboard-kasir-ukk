@@ -6,10 +6,58 @@ use App\Models\Pelanggan;
 use App\Models\Penjualan;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use App\Models\Produk;
 
 
 class PelangganController extends Controller
 {
+
+
+    public function search(Request $request)
+    {
+        $query = Produk::query();
+
+        // Cek apakah ada input pencarian
+        if ($request->has('search')) {
+            $search = $request->input('search');
+
+            // Menambahkan kondisi pencarian untuk nama dan kategori produk
+            $query->where('nama', 'like', "%$search%")
+                ->orWhere('kategori', 'like', "%$search%");
+        }
+
+        // Mendapatkan hasil pencarian
+        $produk = $query->get();
+
+        // Mengembalikan hasil pencarian ke view
+        return view('produk.index', compact('produk'));
+    }
+
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('search');
+
+    //     // Menggunakan query builder untuk SQL kasar
+    //     $produk = DB::table('produk')
+    //         ->whereRaw('nama LIKE ? OR kategori LIKE ?', ["%$query%", "%$query%"])
+    //         ->get();
+
+    //     // Mengembalikan hasil pencarian ke view
+    //     return view('produk.index', compact('produk'));
+    // }
+
+    public function destroy($id)
+    {
+        $pelanggan = Pelanggan::findOrFail($id);
+
+        // Tandai sebagai terhapus (soft delete)
+        $pelanggan->update(['is_deleted' => true]);
+
+        return redirect()->route('pelanggan.index')->with('delete', 'Pelanggan berhasil dihapus.');
+    }
+
+
     public function create(): View
     {
         return view('pelanggan/tambah-pelanggan');
@@ -84,9 +132,12 @@ class PelangganController extends Controller
     }
 
 
+
+
+
     public function index(): View
     {
-        $dataPelanggan = Pelanggan::with('pembelian')->get();
+        $dataPelanggan = Pelanggan::with('pembelian')->where('is_deleted', false)->get();
         $dataPenjualan = Penjualan::all();
 
         return View('pelanggan/dashboard-pelanggan', ['i' => 1], compact('dataPelanggan', 'dataPenjualan'));

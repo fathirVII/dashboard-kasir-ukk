@@ -10,7 +10,7 @@ class PenjualanController extends Controller
 {
     public function index(): View
     {
-        $dataPenjualan = penjualan::orderBy('tanggal_penjualan', 'desc')->get();
+        $dataPenjualan = penjualan::with('detail.produk')->orderBy('tanggal_penjualan', 'desc')->get();
         $dataPenjualanHariIni = Penjualan::whereDate('tanggal_penjualan', Carbon::today())->get();
         $dataKeseluruhanHariIni = $dataPenjualanHariIni->count();
 

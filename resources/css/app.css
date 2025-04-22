@@ -77,3 +77,11 @@
   margin-left: 1rem /* setara ml-4 */;
 }
 
+.product-card:focus {
+    background-color: #4363D0;
+}
+
+.product-card:active {
+    background-color: #4363D0;
+}
+

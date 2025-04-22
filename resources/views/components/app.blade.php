@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>MyApp</title>
+    <title>AppKasir - Dashboard</title>
+<link rel="icon" href="/currency-fill.png" type="image/x-icon" />
     {{-- css --}}
     <link href="css/styles.css" rel="stylesheet" />
     {{-- Link Tailwindcss/vite --}}
@@ -26,6 +27,7 @@
     </div>
 
     {{-- js --}}
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
 
 
     <script>
@@ -57,6 +59,7 @@
             // Jalankan ketika layar di-resize
             window.addEventListener("resize", handleResize);
         });
+
     </script>
 
 

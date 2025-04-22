@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Pelanggan extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_pelanggan', 'nama', 'alamat', 'no_telepon'];
+    protected $fillable = ['id_pelanggan', 'nama','alamat', 'no_telepon','is_deleted'];
     protected $table = 'pelanggan';
 
     //memberi tahu bahwa table produk menggunakan primary key id_pelanggan tipe data string dan non auto_incremen

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama',100);
             $table->string('alamat',200);
             $table->string('no_telepon',20);
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
         Schema::create('penjualan', function (Blueprint $table) {

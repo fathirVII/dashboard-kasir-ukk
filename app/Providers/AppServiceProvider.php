@@ -1,23 +1,24 @@
 <?php
 
+// app/Providers/BladeServiceProvider.php
+
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class BladeServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register the Blade components.
+     *
+     * @return void
      */
-    public function register(): void
+    public function boot()
     {
-        //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function register()
     {
         //
     }

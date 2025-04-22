@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Pelanggan;
-use App\View\Components\detailPenjualan;
+use App\Models\DetailPenjualan;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Penjualan extends Model
@@ -20,12 +20,12 @@ class Penjualan extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    public function pemebeli():BelongsTo
+    public function pembeli():BelongsTo
     {
         return $this->BelongsTo(Pelanggan::class,'id_pelanggan','id_pelanggan');
     }
-    public function detail():HasMany
+    public function detail(): HasMany
     {
-        return $this->hasMany(detailPenjualan::class,'id_detail','id_detail');
+        return $this->hasMany(DetailPenjualan::class, 'id_penjualan', 'id_penjualan');
     }
 }

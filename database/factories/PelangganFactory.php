@@ -19,7 +19,7 @@ class pelangganFactory extends Factory
         return [
             'id_pelanggan' => 'U' . str_pad($this->faker->unique()->numberBetween(1, 9999), 4, '0', STR_PAD_LEFT),
             'nama' => fake()->name(),
-            'alamat' => fake()->address(),
+            'alamat' => fake()->city() . ', ' . fake()->state(),
             'no_telepon' => fake()->phoneNumber(),
         ];
     }

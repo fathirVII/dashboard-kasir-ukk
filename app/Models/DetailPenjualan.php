@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\View\Components\penjualan;
+use App\Models\Penjualan;
+use App\Models\Produk;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +25,6 @@ class DetailPenjualan extends Model
     }
     public function produk(): BelongsTo
     {
-        return $this->belongsTo(detailPenjualan::class, 'id_produk', 'id_produk');
+        return $this->BelongsTo(Produk::class, 'id_produk', 'id_produk');
     }
 }

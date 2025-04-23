@@ -2,6 +2,11 @@
     <x-slot:title>
         Dashboard Detail Penjualan
     </x-slot:title>
+    <div class="bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
+        <a href="{{route('penjualan.index')}}">
+            <div class="bg-[#4363D0] py-1 px-4 rounded-md w-fit">&laquo; Kembali</div>
+        </a>
+    </div>
     <div class=" bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
         <div class=" font-sans">
 

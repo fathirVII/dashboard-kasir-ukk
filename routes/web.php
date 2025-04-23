@@ -14,7 +14,9 @@ Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')
 
 Route::resource('kasir', KasirController::class);
 Route::get('kasir', [KasirController::class,'create'])->name('kasir.create');
+
 Route::resource('pelanggan', PelangganController::class);
+
 Route::resource('produk', ProdukController::class);
 Route::resource('penjualan', PenjualanController::class);
 

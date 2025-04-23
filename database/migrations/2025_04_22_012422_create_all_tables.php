@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamp('tanggal_penjualan')->useCurrent();
             $table->unsignedInteger('total_pembayaran');
             $table->timestamps();
-            $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')->delete('cascade');
+            $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')->onDelete('cascade');
         });
         Schema::create('produk', function (Blueprint $table) {
             $table->string('id_produk',10)->primary();
@@ -42,8 +42,8 @@ return new class extends Migration
             $table->unsignedInteger('jumlah_barang');
             $table->unsignedInteger('sub_total');
             $table->timestamps();
-            $table->foreign('id_penjualan')->references('id_penjualan')->on('penjualan')->delete('cascade');
-            $table->foreign('id_produk')->references('id_produk')->on('produk')->delete('cascade');
+            $table->foreign('id_penjualan')->references('id_penjualan')->on('penjualan')->onDelete('cascade');
+            $table->foreign('id_produk')->references('id_produk')->on('produk')->onDelete('cascade');
         });
     }
 

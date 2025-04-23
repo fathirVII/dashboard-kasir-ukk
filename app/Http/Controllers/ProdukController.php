@@ -28,6 +28,9 @@ class ProdukController extends Controller
 
     public function store(Request $request)
     {
+
+        dd($request);
+
         $request->validate([
             'nama' => 'required|string|max:100',
             'kategori' => 'required|in:handphone & aksesoris,komputer & aksesoris,audio visual,peralatan rumah tangga elektronik',

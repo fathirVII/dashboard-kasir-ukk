@@ -2,7 +2,11 @@
     <x-slot:title>
         Tambah Data Produk
     </x-slot:title>
-
+    <div class="bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
+        <a href="{{route('produk.index')}}">
+            <div class="bg-[#4363D0] py-1 px-4 rounded-md w-fit">&laquo; Kembali</div>
+        </a>
+    </div>
     <div class="bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
         <h1 class="text-lg font-bold uppercase mb-4">Form Tambah Data Produk</h1>
 

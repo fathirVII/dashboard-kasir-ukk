@@ -50,6 +50,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $dataPenjualan->links() }}
 
         </div>
     </div>

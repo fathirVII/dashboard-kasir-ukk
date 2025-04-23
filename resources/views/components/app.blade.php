@@ -36,13 +36,11 @@
             const sidebar = document.getElementById("sidebar");
             const navbar = document.getElementById("navbar");
 
-            // Toggle manual
             sidebarToggle.addEventListener("click", () => {
                 sidebar.classList.toggle("-translate-x-full");
                 navbar.classList.toggle("sidebar-closed");
             });
 
-            // Auto close on small screens
             const handleResize = () => {
                 if (window.innerWidth <= 768) { // md breakpoint = 768px
                     sidebar.classList.add("-translate-x-full");
@@ -53,10 +51,8 @@
                 }
             };
 
-            // Jalankan saat pertama kali halaman dimuat
             handleResize();
 
-            // Jalankan ketika layar di-resize
             window.addEventListener("resize", handleResize);
         });
 

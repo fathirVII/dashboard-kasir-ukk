@@ -3,6 +3,14 @@
         Dashboard Detail Pelanggan
     </x-slot:title>
     <div class=" bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
+        <form method="GET" action="{{ route('pelanggan.index') }}" class="my-6  mx-20 flex">
+            <input type="text" name="search" placeholder="Cari nama pelanggan"
+                class="w-full p-2 rounded-l bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
+            <button type="submit"
+                class="px-4 py-2 bg-blue-600 text-white rounded-r hover:bg-blue-700 transition">Cari</button>
+        </form>
+    </div>
+    <div class=" bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
         @if (session('success'))
             <div class="bg-green-400 text-black p-4 rounded-md mb-4">
                 {{ session('success') }}
@@ -55,7 +63,8 @@
                             <a href="{{ route('pelanggan.edit', $item->id_pelanggan) }}"
                                 class="px-3 py-1 bg-yellow-500 text-black rounded-md hover:bg-yellow-600 transition">Edit</a>
                             <form action="{{ route('pelanggan.destroy', $item->id_pelanggan) }}" method="POST"
-                                style="display:inline;">
+                                style="display:inline;"
+                                onsubmit="return confirm('Apakah kamu yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
@@ -63,11 +72,13 @@
                                     Delete
                                 </button>
                             </form>
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $dataPelanggan->links() }}
 
     </div>
 

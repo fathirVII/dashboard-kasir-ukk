@@ -8,7 +8,7 @@
     {{-- css --}}
     <link href="css/styles.css" rel="stylesheet" />
     {{--  Tailwind CDN --}}
-    <script>
+    {{-- <script>
         tailwind.config = {
             theme: {
                 extend: {},
@@ -19,11 +19,11 @@
             safelist: [],
         };
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script> --}}
 
 
     {{-- Link Tailwindcss/vite --}}
-    {{-- @vite('resources/css/app.css') --}}
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-[#1E1C29] text-[#F7F8FF] min-h-screen">

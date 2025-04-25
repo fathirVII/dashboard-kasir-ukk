@@ -18,10 +18,10 @@
         "DB_CONNECTION": "mysql",
         "DB_HOST": "gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
         "DB_PORT": "4000",
-        "DB_DATABASE": "test",
+        "DB_DATABASE": "toko_elektronik",
         "DB_USERNAME": "2pSgdTLZga1y6SR.root",
-        "DB_PASSWORD":"cGVR5Ewv4qfccEvJ",
-        "DB_SSL_CA": "/var/task/ca.pem",
+        "DB_PASSWORD":"YRvaQw5DjYKymZTA",
+        "DB_SSL_CA": "/var/task/storage/ssl/isrgrootx1.pem",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",

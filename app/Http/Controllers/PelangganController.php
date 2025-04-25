@@ -118,12 +118,15 @@ class PelangganController extends Controller
 
     public function index(Request $request)
     {
+ 
+
         $query = Pelanggan::with('pembelian')->where('is_deleted', false);
 
         if ($request->has('search')) {
             $search = $request->input('search');
             $query->where('nama', 'like', "%$search%");
         }
+      
 
         $jumlahPelanggan = $query->count();
 

@@ -1,5 +1,5 @@
  <aside id="sidebar"
-     class="bg-[#262537] w-58 h-screen fixed top-0 left-0 shadow-md transition-transform duration-700 z-50 transform">
+     class="bg-[#262537] w-[14.5rem] h-screen fixed top-0 left-0 shadow-md transition-transform duration-700 z-50 transform">
      <div class="font-medium text-lg py-4">
 
          <h2

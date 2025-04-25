@@ -73,9 +73,7 @@
   font-style: italic;
 }
 
-.sidebar-closed {
-  margin-left: 1rem /* setara ml-4 */;
-}
+
 
 .product-card:focus {
     background-color: #4363D0;
@@ -85,3 +83,10 @@
     background-color: #4363D0;
 }
 
+  #navbar {
+    transition: margin-left 0.7s; /* smooth animasi sesuai Tailwind duration-700 */
+  }
+
+  #navbar.sidebar-closed {
+    margin-left: 4rem; /* saat sidebar ditutup */
+  }

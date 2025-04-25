@@ -1,3 +1,3 @@
-<div>
-    <!-- It is never too late to be what you might have been. - George Eliot -->
-</div>
+      @if (session('success'))
+            <div class="bg-green-500 text-white p-2 rounded-md mb-4">{{ session('success') }}</div>
+        @endif

@@ -1,3 +1,3 @@
-<div>
-    <!-- I have not failed. I've just found 10,000 ways that won't work. - Thomas Edison -->
-</div>
+        @if (session('error'))
+            <div class="bg-orange-500 text-white p-2 rounded-md mb-4">{{ session('error') }}</div>
+        @endif

@@ -4,13 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>AppKasir - Dashboard</title>
-<link rel="icon" href="/currency-fill.png" type="image/x-icon" />
+    <link rel="icon" href="/currency-fill.png" type="image/x-icon" />
     {{-- css --}}
     <link href="css/styles.css" rel="stylesheet" />
-    {{-- Link Tailwindcss/vite --}}
-    @vite('resources/css/app.css')
-    {{-- Simmple database --}}
+    {{--  Tailwind CDN --}}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {},
+            },
+            corePlugins: {
+                preflight: true,
+            },
+            safelist: [],
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
+
+    {{-- Link Tailwindcss/vite --}}
+    {{-- @vite('resources/css/app.css') --}}
 </head>
 
 <body class="bg-[#1E1C29] text-[#F7F8FF] min-h-screen">
@@ -21,13 +34,12 @@
             {{ $title }}
         </x-navbar>
 
-        <main class="w-full pr-4    ">
+        <main class="W-full pr-4">
             {{ $slot }}
         </main>
     </div>
 
-    {{-- js --}}
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+
 
 
     <script>
@@ -55,10 +67,25 @@
 
             window.addEventListener("resize", handleResize);
         });
-
     </script>
 
+    <style>
+        #navbar {
+            transition: margin-left 0.7s;
+        }
 
+        #navbar.sidebar-closed {
+            margin-left: 4rem;
+        }
+    </style>
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
 
 </body>
 

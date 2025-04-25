@@ -29,7 +29,6 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
 
         $request->validate([
             'nama' => 'required|string|max:100',
@@ -38,11 +37,9 @@ class ProdukController extends Controller
             'stok' => 'required|integer|min:0',
         ]);
 
-        // Ambil ID produk terakhir
         $lastProduk = Produk::orderBy('id_produk', 'desc')->first();
         $nextNumber = $lastProduk ? (int) substr($lastProduk->id_produk, 3) + 1 : 1;
 
-        // Format ID Produk menjadi PLG0001, PLG0002, dst.
         $newId = 'PRO' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
 
         Produk::create([
@@ -59,10 +56,8 @@ class ProdukController extends Controller
 
     public function edit($id_produk)
     {
-        // Menemukan data pelanggan berdasarkan ID
         $produk = Produk::findOrFail($id_produk);
 
-        // Menampilkan form edit dengan data pelanggan
         return view('produk/edit-produk', compact('produk'));
     }
 
@@ -76,10 +71,8 @@ class ProdukController extends Controller
             'stok' => 'required|integer|min:0',
         ]);
 
-        // Cari produk berdasarkan ID
         $produk = Produk::findOrFail($id);
 
-        // Update data produk
         $produk->update([
             'nama' => $request->input('nama'),
             'kategori' => $request->input('kategori'),
@@ -90,10 +83,11 @@ class ProdukController extends Controller
         return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
-    public function index(): View
+    public function index(Request $request)
     {
         $dataProduk = Produk::all();
 
-        return view('produk/dashboard-produk',compact('dataProduk'));
+
+        return view('produk/dashboard-produk', compact('dataProduk'));
     }
 }

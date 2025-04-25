@@ -3,6 +3,7 @@
         Dashboard Stok Produk
     </x-slot:title>
 
+    
     @if (session('success'))
         <div class=" bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
             <div class="bg-green-400 text-black p-4 rounded-md mb-4">
@@ -36,7 +37,7 @@
                         alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
                         class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8">
 
-                    <p class="mt-1 text-lg font-medium text-gray-200">Nama : {{ $item->nama_produk }}</p>
+                    <p class="mt-1 text-lg font-medium text-gray-200">Nama : {{ $item->nama }}</p>
                     <h3 class="mt-1 text-sm text-gray-200">Kategori : {{ $item->kategori }}</h3>
                     <h3 class="mt-1 text-sm text-gray-200">Harga : {{ $item->harga }}</h3>
                     <h3 class="mt-1 text-sm text-gray-200">Stok : {{ $item->stok }}</h3>

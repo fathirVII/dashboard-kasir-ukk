@@ -11,17 +11,27 @@ use Illuminate\View\View;
 
 class KasirController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
         // Ambil data pelanggan dan produk
         $pelanggan = Pelanggan::where('is_deleted', false)->get();
-        $produk = Produk::all();
 
-        return view('kasir/kasir', compact('pelanggan', 'produk'));
+        $query = Produk::query();
+
+        if ($request->has('kategori') && $request->kategori != '') {
+            $query->where('kategori', $request->kategori);
+        }
+        $selected = $request->kategori;
+        $produk = $query->get();
+
+
+        return view('kasir/kasir', compact('pelanggan', 'produk', 'selected'));
     }
 
     public function store(Request $request)
     {
+
+
         $request->validate([
             'id_pelanggan' => 'required',
             'produk' => 'required|array',
@@ -35,7 +45,7 @@ class KasirController extends Controller
         $lastIdNumber = $lastPenjualan ? (int)substr($lastPenjualan->id_penjualan, 3) : 0;
         $newIdPenjualan = 'PNJ' . str_pad($lastIdNumber + 1, 4, '0', STR_PAD_LEFT);
 
-        // Buat penjualan baru
+        // create data penjualan
         $penjualan = Penjualan::create([
             'id_penjualan' => $newIdPenjualan,
             'id_pelanggan' => $request->id_pelanggan,
@@ -48,9 +58,9 @@ class KasirController extends Controller
         $lastDetail = DetailPenjualan::orderBy('id_detail', 'desc')->first();
         $lastDetailIdNumber = $lastDetail ? (int)substr($lastDetail->id_detail, 3) : 0;
 
-        foreach ($request->produk as $index => $produkId) {
+        foreach ($request->produk as $produkId) {
             $produk = Produk::findOrFail($produkId);
-            $jumlah = $request->jumlah[$index];
+            $jumlah = $request->jumlah[$produkId] ?? 1;
             $subTotal = $produk->harga * $jumlah;
 
             // Pengecekan stok

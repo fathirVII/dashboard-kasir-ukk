@@ -18,6 +18,7 @@ Route::get('kasir', [KasirController::class,'create'])->name('kasir.create');
 Route::resource('pelanggan', PelangganController::class);
 
 Route::resource('produk', ProdukController::class);
+
 Route::resource('penjualan', PenjualanController::class);
 
 Route::get('/detail_penjualan/{id_penjualan}',[DetailPenjualanController::class,'index'])->name('detail-penjualan.index');

@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
+import fs from "fs";
 
 export default defineConfig({
     plugins: [
@@ -10,4 +11,14 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    server: {
+        https: {
+            key: fs.readFileSync(
+                "/app/storage/ssl/server.key"
+            ),
+            cert: fs.readFileSync(
+                "/app/storage/ssl/server.crt"
+            ),
+        },
+    },
 });

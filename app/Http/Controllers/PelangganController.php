@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
 use App\Models\Penjualan;
+use Dom\Comment;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -82,6 +83,17 @@ class PelangganController extends Controller
             'alamat' => $request->input('alamat'),
             'no_telepon' => $request->input('no_telepon'),
         ]);
+
+        // Dapatkan URL sebelumnya
+        $previousUrl = url()->previous(); // atau request()->headers->get('referer')
+
+        // auto fill selection
+        $namaPelanggan = $request->username;
+
+        // Cek apakah user datang dari halaman kasir/create
+        if (strpos($previousUrl, '/kasir/create') !== false) {
+            return redirect()->route('kasir.create',['namaPelanggan' => $namaPelanggan])->with('success', 'Pelanggan berhasil ditambahkan.');
+        }
 
         return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil ditambahkan.');
     }

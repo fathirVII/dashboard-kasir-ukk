@@ -6,26 +6,29 @@ use App\Models\Pelanggan;
 use App\Models\Produk;
 use App\Models\Penjualan;
 use App\Models\DetailPenjualan;
+use App\View\Components\produk as ComponentsProduk;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class KasirController extends Controller
 {
+
     public function create(Request $request)
     {
         // Ambil data pelanggan dan produk
         $pelanggan = Pelanggan::where('is_deleted', false)->get();
 
-        $query = Produk::query();
+        $kategori = $request->input('kategori');
+        $queryProduk = Produk::query();
 
-        if ($request->has('kategori') && $request->kategori != '') {
-            $query->where('kategori', $request->kategori);
+        if ($request->has('kategori') && $request->kategori != '_') {
+            $queryProduk->where('kategori', $request->kategori);
+        } else {
+            $produk = Produk::all();
         }
-        $selected = $request->kategori;
-        $produk = $query->get();
+        $produk = $queryProduk->get();
 
-
-        return view('kasir/kasir', compact('pelanggan', 'produk', 'selected'));
+        return view('kasir/kasir', compact('pelanggan','produk','kategori'));
     }
 
     public function store(Request $request)

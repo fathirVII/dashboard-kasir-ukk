@@ -23,10 +23,10 @@
                 <label class="block mb-1 font-semibold">Kategori</label>
                 <select name="kategori" required
                     class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
-                    <option value="handphone & aksesoris">Handphone & Aksesoris</option>
-                    <option value="komputer & aksesoris">Komputer & Aksesoris</option>
-                    <option value="audio visual">Audio Visual</option>
-                    <option value="peralatan rumah tangga elektronik">Peralatan Rumah Tangga Elektronik</option>
+                    <option value="coffe lokal">coffe lokal</option>
+                    <option value="coffe luar">coffe luar</option>
+                    <option value="roti & pestri">roti & pestri</option>
+                    <option value="lain-lain">lain-lain</option>
                 </select>
             </div>
 

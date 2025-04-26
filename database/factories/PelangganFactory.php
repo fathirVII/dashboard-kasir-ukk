@@ -17,7 +17,7 @@ class pelangganFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_pelanggan' => 'U' . str_pad($this->faker->unique()->numberBetween(1, 9999), 4, '0', STR_PAD_LEFT),
+            'id_pelanggan' => 'PLG' . str_pad($this->faker->unique()->numberBetween(1, 9999), 4, '0', STR_PAD_LEFT),
             'nama' => fake()->name(),
             'alamat' => fake()->city() . ', ' . fake()->state(),
             'no_telepon' => fake()->phoneNumber(),

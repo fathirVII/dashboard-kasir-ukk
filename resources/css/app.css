@@ -84,9 +84,14 @@
 }
 
   #navbar {
-    transition: margin-left 0.7s; /* smooth animasi sesuai Tailwind duration-700 */
+    transition: margin-left 0.7s; 
   }
 
-  #navbar.sidebar-closed {
-    margin-left: 4rem; /* saat sidebar ditutup */
+ #pelangganModal.hiddenModal {
+    display: none;
   }
+ #pelangganModal.displayModal {
+    display: block;
+  }
+
+ 

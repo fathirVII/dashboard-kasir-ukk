@@ -23,7 +23,7 @@ class DetailPenjualanFactory extends Factory
 
         return [
             // Generate id_detail seperti D0001, D0002,
-            'id_detail' => 'D' . $this->faker->unique()->numberBetween(1000, 9999),
+            'id_detail' => 'DTL' . $this->faker->unique()->numberBetween(1000, 9999),
             // Ambil id_penjualan yang sudah ada di tabel penjualan
             'id_penjualan' => Penjualan::factory(),
             // Ambil id_produk yang sudah ada di tabel produk

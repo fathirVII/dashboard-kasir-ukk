@@ -11,14 +11,14 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    server: {
-        https: {
-            key: fs.readFileSync(
-                "/app/storage/ssl/server.key"
-            ),
-            cert: fs.readFileSync(
-                "/app/storage/ssl/server.crt"
-            ),
-        },
-    },
+    // server: {
+    //     https: {
+    //         key: fs.readFileSync(
+    //             "A:/TUGAS UJIKOM/dashboard_kasir/storage/ssl/server.key"
+    //         ),
+    //         cert: fs.readFileSync(
+    //             "A:/TUGAS UJIKOM/dashboard_kasir/storage/ssl/server.crt"
+    //         ),
+    //     },
+    // },
 });

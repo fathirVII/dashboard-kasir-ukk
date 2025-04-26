@@ -5,66 +5,68 @@
 
     <div class="bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
         <h1 class="text-lg font-bold uppercase mb-4">Form Pembelian</h1>
-
         @include('components.card-modal-success')
         @include('components.card-modal-warning')
+    </div>
 
-        <form action="{{ route('kasir.store') }}" method="POST" class="space-y-4">
-            @csrf
+    @include('kasir.kasir-tambah-pelanggan')
 
-            <!-- Pilih Pelanggan -->
-            <label class="block mb-1 font-semibold">Pelanggan</label>
-            <div class="flex w-full justify-between gap-2">
-                <select name="id_pelanggan" required id="select-pelanggan"
-                    class="w-full my-2 rounded bg-[#35374E] border border-gray-600 text-white select2">
-                    <option value="">Pilih Pelanggan</option>
-                    @foreach ($pelanggan as $item)
-                        <option value="{{ $item->id_pelanggan }}">{{ $item->nama }}</option>
-                    @endforeach
-                </select>
+    {{-- List Produk --}}
+    <div class=" bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
 
-                <a href="{{ route('pelanggan.create') }}"
-                    class="w-40 content-center my-2 px-2 bg-indigo-500 text-gray-200 rounded-md hover:bg-indigo-600 transition">
-                    Daftar Pelanggan</a>
-            </div>
-
-
-            <!-- Pilih Produk Card -->
-
-            <div class="flex gap-4">
-                <div class="w-4/6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 px-10 mt-6">
-                    @foreach ($produk as $item)
-                        <label for="produk-{{ $item->id_produk }}"
-                            class="product-card group relative p-4 border border-gray-600 rounded-lg bg-[#35374E] hover:bg-[#4B4D66] transition cursor-pointer"
-                            tabindex="0">
-                            <input type="checkbox" name="produk[]" value="{{ $item->id_produk }}"
-                                data-harga="{{ $item->harga }}" id="produk-{{ $item->id_produk }}"
-                                onchange="toggleJumlah(this)"
-                                class="absolute bottom-2 right-2 w-6 h-6 text-blue-500 border-none focus:ring-0">
-
-                            <img src="https://cdn.thewirecutter.com/wp-content/media/2024/07/laptopstopicpage-2048px-3685-2x1-1.jpg"
-                                alt="Product image"
-                                class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75">
-
-                            <p class="mt-2 text-lg font-medium text-gray-200">Nama: {{ $item->nama }}</p>
-                            <p class="text-sm text-gray-200">Kategori: {{ $item->kategori }}</p>
-                            <p class="text-sm text-gray-200">Harga: Rp {{ number_format($item->harga, 0, ',', '.') }}
-                            </p>
-                            <p class="text-sm text-gray-200">Stok: {{ $item->stok }}</p>
-                        </label>
-                    @endforeach
+        <div class=" flex gap-4">
+            <div class="w-4/6 ">
+                <div class="bg-[#35374E] p-2 rounded-2xl">
+                    @include('kasir.search-kategori')
                 </div>
 
-                {{-- jumlah & total --}}
+                <!-- Pilih Produk Card -->
+                <form action="{{ route('kasir.store') }}" method="POST" class="space-y-4">
+                    @csrf
+                    <div
+                        class="h-[40rem] p-5 overflow-y-auto max-md:w-full grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 max-md:px-2 mt-3">
+                        @foreach ($produk as $item)
+                            <label
+                                class="h-fit group relative p-4 border border-gray-600 rounded-2xl bg-[#35374E]  transition cursor-pointer {{ $item->stok > 0 ? 'hover:bg-[#4363D0]' : 'hover:bg-red-500' }}"
+                                tabindex="0">
+                                <input type="checkbox" name="produk[]" value="{{ $item->id_produk }}"
+                                    data-harga="{{ $item->harga }}" id="produk-{{ $item->id_produk }}"
+                                    onchange="toggleJumlah(this)"
+                                    class="absolute bottom-2 right-2 w-6 h-6 text-blue-500 border-none focus:ring-0"
+                                    @if ($item->stok == 0) disabled @endif>
+                                <p
+                                    class=" absolute left-1 top-1 z-20 text-lg font-medium rounded-lg px-2 capitalize {{ $item->stok > 0 ? 'text-green-400 bg-green-800' : 'text-orange-400 bg-red-800' }}">
+                                    Stok {{ $item->stok > 0 ? $item->stok : 'habis' }}</p>
+                                <img src="{{ asset('image/defult-image.png') }}" alt="Product image"
+                                    class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75">
 
+                                <p class="mt-2 text-lg font-medium text-gray-200 capitalize">{{ $item->nama }}</p>
 
-                <div class="w-2/6 bg-[#35374E] p-4 rounded-2xl shadow-md mt-6 flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-white text-lg font-semibold mb-4">Jumlah Barang</h2>
+                                <p class="text-lg font-semibold text-gray-200">Harga: Rp
+                                    {{ number_format($item->harga, 0, ',', '.') }}
+                                </p>
+                                <p class="text-sm text-gray-200">Kategori: {{ $item->kategori }}</p>
+                            </label>
+                        @endforeach
+                    </div>
+            </div>
+
+            {{-- jumlah & total --}}
+            <div class="w-2/6 ">
+                <div class="bg-[#35374E] p-2 rounded-2xl">
+                    @include('kasir.search-pelanggan')
+                </div>
+                <div id="modalCardJumlah"
+                    class="min-h-[40rem] max-lg:w-screen max-lg:fixed max-lg:bottom-2 max-lg:left-0 max-lg:hidden
+                    bg-[#35374E] z-30 p-4 mt-3 rounded-2xl flex flex-col justify-between">
+
+                    <h2 class="text-white text-lg font-semibold mb-4 ml-2">Jumlah Barang</h2>
+                    <div class="h-[15rem] bg-[#4b4e69] overflow-y-auto rounded-md p-2">
 
                         @foreach ($produk as $item)
                             <div class="mb-4" id="jumlah_{{ $item->id_produk }}" style="display: none;">
-                                <label for="jumlah_{{ $item->id_produk }}_input" class="block text-sm text-white mb-1">
+                                <label for="jumlah_{{ $item->id_produk }}_input"
+                                    class="block text-lg text-white mb-1 uppercase font-bold">
                                     {{ $item->nama }}
                                 </label>
                                 <input type="number" name="jumlah[{{ $item->id_produk }}]"
@@ -78,66 +80,30 @@
                     <div>
                         <div class="border-t border-gray-500 pt-4">
                             <p class="text-white text-sm">Total Tagihan:</p>
-                            <p id="totalTagihan" class="text-white text-xl font-bold">Rp</p>
+                            <p id="totalTagihan" class="text-white text-xl font-bold">Rp 0</p>
                         </div>
-
+                        <div class="border-t border-gray-500 pt-4 mt-4">
+                            <p class="text-white text-sm mb-2">Bayar Cash:</p>
+                            <input type="number"
+                                class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
+                        </div>
+                        <div class="border-t border-gray-500 pt-4 mt-4">
+                            <p class="text-white text-sm">Total Kembalian:</p>
+                            <p id="kembalian" class="text-white text-xl font-bold">Rp 0</p>
+                        </div>
                         <button type="submit"
                             class="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
                             Simpan Transaksi
                         </button>
                     </div>
+                    </form>
                 </div>
             </div>
 
-        </form>
+        </div>
     </div>
-    <!-- Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    <!-- Select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <script>
-        function toggleJumlah(checkbox) {
-            const id = checkbox.value;
-            const jumlahContainer = document.getElementById('jumlah_' + id);
-            const inputJumlah = document.getElementById('jumlah_' + id + '_input');
-
-            if (checkbox.checked) {
-                jumlahContainer.style.display = 'block';
-                inputJumlah.disabled = false;
-            } else {
-                jumlahContainer.style.display = 'none';
-                inputJumlah.disabled = true;
-            }
-
-            hitungTotal();
-        }
-
-        document.querySelectorAll('.jumlah-input').forEach(input => {
-            input.addEventListener('input', hitungTotal);
-        });
-
-        function hitungTotal() {
-            let total = 0;
-
-            document.querySelectorAll('.jumlah-input').forEach(input => {
-                if (!input.disabled) {
-                    const harga = parseInt(input.dataset.harga);
-                    const jumlah = parseInt(input.value) || 0;
-                    total += harga * jumlah;
-                }
-            });
-
-            document.getElementById('totalTagihan').textContent = 'Rp ' + total.toLocaleString('id-ID');
-        }
-        $(document).ready(function() {
-            $('#select-pelanggan').select2({
-                placeholder: "Cari atau pilih pelanggan",
-                width: '100%',
-                theme: 'classic',
-            });
-        });
-    </script>
+    @include('kasir.kasir-script')
+    
 
 </x-app>

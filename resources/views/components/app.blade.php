@@ -4,32 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>AppKasir - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/currency-fill.png" type="image/x-icon" />
+    {{-- Link Tailwindcss/vite --}}
+    @vite('resources/css/app.css')
     {{-- css --}}
     <link href="css/styles.css" rel="stylesheet" />
     {{--  Tailwind CDN --}}
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {},
-            },
-            corePlugins: {
-                preflight: true,
-            },
-            safelist: [],
-        };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
 
 
-    {{-- Link Tailwindcss/vite --}}
-    {{-- @vite('resources/css/app.css') --}}
 </head>
 
 <body class="bg-[#1E1C29] text-[#F7F8FF] min-h-screen">
     <x-sidebar></x-sidebar>
 
-    <div id="navbar" class="flex-1 ml-[16rem] transition-[margin] duration-700">
+    <div id="navbar" class="flex-1 ml-64 max-md:ml-4 transition-[margin] duration-700">
         <x-navbar>
             {{ $title }}
         </x-navbar>
@@ -54,7 +43,7 @@
             });
 
             const handleResize = () => {
-                if (window.innerWidth <= 768) { // md breakpoint = 768px
+                if (window.innerWidth <= 1024) { 
                     sidebar.classList.add("-translate-x-full");
                     navbar.classList.add("sidebar-closed");
                 } else {
@@ -75,7 +64,7 @@
         }
 
         #navbar.sidebar-closed {
-            margin-left: 4rem;
+            margin-left: 1rem;
         }
     </style>
 

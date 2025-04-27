@@ -59,17 +59,16 @@
                 <div class="bg-[#35374E] p-2 rounded-2xl max-lg:hidden">
                     @include('kasir.search-pelanggan')
                 </div>
-                <div class=" fixed right-2 top-15  min-lg:hidden">
-                    <button type="button" id="modalCardToggle2"><i
-                            class="ri-arrow-left-box-fill text-[2rem] text-white cursor-pointer"></i></button>
+                <div class="w-9 h-13 z-30 fixed right-4  min-lg:hidden">
+                    <button class="w-14 " type="button" id="activeArrow"
+                        onclick="document.getElementById('modalCardJumlah').classList.toggle('translate-x-full')"><i
+                            class="ri-arrow-left-box-fill text-[3rem] text-white cursor-pointer"></i></button>
                 </div>
                 <div id="modalCardJumlah"
                     class="min-h-[40rem] max-lg:w-screen max-lg:fixed max-lg:bottom-2 max-lg:left-0
-                    bg-[#35374E] z-30 p-4 mt-3 rounded-2xl flex flex-col justify-between transition-transform duration-700 transform">
+                    bg-[#35374E] z-20 p-4 mt-3 rounded-2xl flex flex-col justify-between transition-transform duration-700 transform">
                     <div class="flex justify-between">
                         <h2 class="text-white text-lg font-semibold mb-4 ml-2">Jumlah Barang</h2>
-                        <button type="button" class="min-lg:hidden" id="modalCardToggle"><i
-                                class="ri-arrow-right-box-fill text-[2rem] text-white cursor-pointer"></i></button>
                     </div>
                     <div class="h-[15rem] bg-[#4b4e69] overflow-y-auto rounded-md p-2">
 
@@ -104,7 +103,8 @@
                                 <button onclick="tambahBayar(50000)" type="button"
                                     class="bg-blue-600 font-bold px-2 rounded-md">50.000</button>
                             </div>
-                            <input type="number" name="nominal_pembayaran" oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
+                            <input type="number" name="nominal_pembayaran"
+                                oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
                                 oninput="this.setCustomValidity('')" id="bayar" placeholder="Masukkan nominal bayar"
                                 class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
                         </div>
@@ -113,7 +113,8 @@
                                 <p class="text-white text-sm">Total Kembalian:</p>
                                 <p id="kembalian" class="text-white text-xl font-bold">Rp 0</p>
                             </div>
-                            <input type="checkbox" id="confirmCheckbox" class="w-8 h-8 text-blue-500 border-none focus:ring-0 mt-4" required
+                            <input type="checkbox" id="confirmCheckbox"
+                                class="w-8 h-8 text-blue-500 border-none focus:ring-0 mt-4" required
                                 oninvalid="this.setCustomValidity('Konfirmasi Transaksi.')"
                                 oninput="this.setCustomValidity('')">
 

@@ -100,18 +100,9 @@
             pelangganModal.style.display = "none";
         });
 
+        const activeArrow = document.getElementById("ActiveArrow");
+        activeArrow.classList.add('translate-x-full');
 
-        const sidebarToggle = document.getElementById("modalCardToggle");
-        const sidebarToggle2 = document.getElementById("modalCardToggle2");
-        const modalCardJumlah = document.getElementById("modalCardJumlah");
-
-        sidebarToggle.addEventListener("click", () => {
-            modalCardJumlah.classList.add("translate-x-full");
-        });
-
-        sidebarToggle2.addEventListener("click", () => {
-            modalCardJumlah.classList.remove("translate-x-full");
-        });
 
         const handleResize = () => {
             if (window.innerWidth <= 1024) {

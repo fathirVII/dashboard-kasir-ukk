@@ -159,11 +159,9 @@
 
             // Trigger
             if (idPelanggan) {
-                pelangganModal.classList.remove("hiddenModal");
-                pelangganModal.classList.add("displayModal");
+                pelangganModal.style.display = 'block'
             } else {
-                pelangganModal.classList.remove("displayModal");
-                pelangganModal.classList.add("hiddenModal");
+                pelangganModal.style.display = 'none'
             };
 
         });

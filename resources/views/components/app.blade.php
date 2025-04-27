@@ -11,6 +11,7 @@
     {{-- css --}}
     <link href="css/styles.css" rel="stylesheet" />
     {{--  Tailwind CDN --}}
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
 

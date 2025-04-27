@@ -11,18 +11,16 @@
     {{-- css --}}
     <link href="css/styles.css" rel="stylesheet" />
     {{--  Tailwind CDN --}}
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
 
 </head>
 
 <body class="bg-[#1E1C29] text-[#F7F8FF] min-h-screen">
+    <span id="blur" for="sidebarToggle" class=" fixed inset-0 z-40 cursor-pointer"></span>
     <x-sidebar></x-sidebar>
 
-    <div id="navbar" class="flex-1 ml-64 max-md:ml-4 transition-[margin] duration-700">
+    <div id="navbar" class="flex-1 ml-64 max-lg:ml-4 transition-[margin] duration-700">
         <x-navbar>
             {{ $title }}
         </x-navbar>
@@ -40,14 +38,26 @@
             const sidebarToggle = document.getElementById("sidebarToggle");
             const sidebar = document.getElementById("sidebar");
             const navbar = document.getElementById("navbar");
+            const blur = document.getElementById("blur");
+            blur.style.display = 'none'; // Sembunyikan blur saat sidebar tersembunyi
+
 
             sidebarToggle.addEventListener("click", () => {
+                blur.classList.toggle("bg-black/20");
+                blur.classList.toggle("backdrop-blur-sm");
                 sidebar.classList.toggle("-translate-x-full");
                 navbar.classList.toggle("sidebar-closed");
+
+                if (sidebar.classList.contains("-translate-x-full")) {
+                    blur.style.display = 'none'; // Sembunyikan blur saat sidebar tersembunyi
+                } else {
+                    blur.style.display = 'block'; // Tampilkan blur saat sidebar terbuka
+                }
             });
 
+
             const handleResize = () => {
-                if (window.innerWidth <= 1024) { 
+                if (window.innerWidth <= 1920) {
                     sidebar.classList.add("-translate-x-full");
                     navbar.classList.add("sidebar-closed");
                 } else {

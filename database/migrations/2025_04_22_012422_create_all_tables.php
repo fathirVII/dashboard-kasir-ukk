@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('id_penjualan',10)->primary();
             $table->string('id_pelanggan',10);
             $table->timestamp('tanggal_penjualan')->useCurrent();
+            $table->enum('jenis_pembayaran',['cash','Debit card','e-wallet'])->default('cash');
+            $table->unsignedInteger('nominal_pembayaran');
             $table->unsignedInteger('total_pembayaran');
             $table->timestamps();
             $table->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')->onDelete('cascade');

@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center">
         <h1 class="text-2xl max-md:text-lg font-bold text-[#4363D0]">{{$slot}}</h1>
         <!-- Tombol Toggle Sidebar -->
-        <button id="sidebarToggle" class="text-[#F7F8FF] max-md:text-1xl bg-[#4363D0] px-3 py-2 rounded-md hover:bg-[#1E1C29] transition">
+        <button id="sidebarToggle" name="sidebarToggle" class="absolute right-8 z-50 text-[#F7F8FF] max-md:text-1xl bg-[#4363D0] px-3 py-2 rounded-md hover:bg-[#1E1C29] transition">
             ☰
         </button>
     </div>

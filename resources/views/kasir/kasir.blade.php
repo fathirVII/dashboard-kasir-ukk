@@ -60,7 +60,7 @@
                     @include('kasir.search-pelanggan')
                 </div>
                 <div class=" fixed right-2 top-15  min-lg:hidden">
-                    <button id="modalCardToggle2"><i
+                    <button type="button" id="modalCardToggle2"><i
                             class="ri-arrow-left-box-fill text-[2rem] text-white cursor-pointer"></i></button>
                 </div>
                 <div id="modalCardJumlah"
@@ -68,7 +68,7 @@
                     bg-[#35374E] z-30 p-4 mt-3 rounded-2xl flex flex-col justify-between transition-transform duration-700 transform">
                     <div class="flex justify-between">
                         <h2 class="text-white text-lg font-semibold mb-4 ml-2">Jumlah Barang</h2>
-                        <button class="min-lg:hidden" id="modalCardToggle"><i
+                        <button type="button" class="min-lg:hidden" id="modalCardToggle"><i
                                 class="ri-arrow-right-box-fill text-[2rem] text-white cursor-pointer"></i></button>
                     </div>
                     <div class="h-[15rem] bg-[#4b4e69] overflow-y-auto rounded-md p-2">
@@ -104,7 +104,7 @@
                                 <button onclick="tambahBayar(50000)" type="button"
                                     class="bg-blue-600 font-bold px-2 rounded-md">50.000</button>
                             </div>
-                            <input type="number" required oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
+                            <input type="number" name="nominal_pembayaran" oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
                                 oninput="this.setCustomValidity('')" id="bayar" placeholder="Masukkan nominal bayar"
                                 class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
                         </div>
@@ -113,7 +113,7 @@
                                 <p class="text-white text-sm">Total Kembalian:</p>
                                 <p id="kembalian" class="text-white text-xl font-bold">Rp 0</p>
                             </div>
-                            <input type="checkbox" class="w-8 h-8 text-blue-500 border-none focus:ring-0 mt-4" required
+                            <input type="checkbox" id="confirmCheckbox" class="w-8 h-8 text-blue-500 border-none focus:ring-0 mt-4" required
                                 oninvalid="this.setCustomValidity('Konfirmasi Transaksi.')"
                                 oninput="this.setCustomValidity('')">
 

@@ -40,6 +40,7 @@ class KasirController extends Controller
             'produk' => 'required|array',
             'produk.*' => 'required|exists:produk,id_produk',
             'jumlah.*' => 'required|integer|min:1',
+            'nominal_pembayaran' => 'required',
         ]);
 
 
@@ -53,6 +54,7 @@ class KasirController extends Controller
             'id_penjualan' => $newIdPenjualan,
             'id_pelanggan' => $request->id_pelanggan,
             'total_pembayaran' => 0,
+            'nominal_pembayaran' => $request->nominal_pembayaran,
         ]);
 
         $totalPembayaran = 0;
@@ -94,6 +96,10 @@ class KasirController extends Controller
         // Update total pembayaran di penjualan
         $penjualan->update(['total_pembayaran' => $totalPembayaran]);
 
-        return redirect()->route('kasir.create')->with('success', 'Transaksi berhasil.');
+        // Dapatkan URL sebelumnya
+        $previousUrl = url()->previous(); // atau request()->headers->get('referer')
+
+
+        return redirect()->route('detail-penjualan.index', ['id_penjualan' => $newIdPenjualan, 'urlBack' => $previousUrl])->with('success', 'Transaksi berhasil.');
     }
 }

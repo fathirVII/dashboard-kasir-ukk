@@ -3,9 +3,14 @@
         Dashboard Detail Penjualan
     </x-slot:title>
     <div class="bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
-        <a href="{{ route('penjualan.index') }}">
-            <div class="bg-[#4363D0] py-1 px-4 rounded-md w-fit">&laquo; Kembali</div>
+        @include('components.card-modal-success')
+
+    </div>
+    <div class="bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
+        <a href="{{ !$urlBack ? route('penjualan.index') : route('kasir.create') }}">
+             <div class="bg-[#4363D0] py-1 px-4 rounded-md w-fit">&laquo; Kembali</div>
         </a>
+        
     </div>
     <div class=" w-full flex justify-center mt-5 ">
         <div

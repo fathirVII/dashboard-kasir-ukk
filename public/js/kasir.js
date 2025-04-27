@@ -50,9 +50,22 @@ function tambahBayar(nominal) {
     // Karena value berubah, kamu mungkin mau langsung update kembalian juga
     if (typeof kembalian === "function") {
         kembalian();
+        toggleCheckboxState();
     }
 }
-
+function toggleCheckboxState() {
+    const totalTagihanElement = document.getElementById("totalTagihan");
+    const bayarInput = document.getElementById("bayar");
+    const confirmCheckbox = document.getElementById("confirmCheckbox");
+    const totalTagihan =
+        parseInt(getTotalFromText(totalTagihanElement.textContent)) || 0;
+    const bayar = parseInt(bayarInput.value) || 0;
+    if (bayar >= totalTagihan) {
+        confirmCheckbox.disabled = false; // Aktifkan checkbox jika bayar >= total tagihan
+    } else {
+        confirmCheckbox.disabled = true; // Nonaktifkan checkbox jika bayar < total tagihan
+    }
+}
 
 window.addEventListener("DOMContentLoaded", () => {
     const sidebarToggle = document.getElementById("modalCardToggle");
@@ -82,6 +95,10 @@ window.addEventListener("DOMContentLoaded", () => {
         input.addEventListener("input", hitungTotal);
     });
 
-    document.getElementById("bayar").addEventListener("input", kembalian);
-});
+    document.getElementById("bayar").addEventListener("input", () => {
+        kembalian();
+        toggleCheckboxState();
+    });
 
+    toggleCheckboxState();
+});

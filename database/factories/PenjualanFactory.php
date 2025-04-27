@@ -14,6 +14,7 @@ class PenjualanFactory extends Factory
             // Ambil id_pelanggan acak dari tabel pelanggan jika tidak ada generate factory pelanggan
             'id_pelanggan' => Pelanggan::inRandomOrder()->first()?->id_pelanggan ?? Pelanggan::factory(),
             'tanggal_penjualan' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'nominal_pembayaran' => $this->faker->numberBetween(10000, 500000),
             'total_pembayaran' => $this->faker->numberBetween(10000, 500000),
         ];
     }

@@ -11,7 +11,7 @@
                     @endforeach
                 </select>
 
-                <button id="toggleModal2" type="button"
+                <button onclick="document.getElementById('pelangganModal').style.display = 'block'" type="button"
                     class="w-40 content-center px-2 bg-indigo-500 text-gray-200 rounded-md hover:bg-indigo-600 transition cursor-pointer">
                     Daftarkan</button>
             </div>

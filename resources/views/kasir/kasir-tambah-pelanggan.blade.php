@@ -1,4 +1,4 @@
-<div class="fixed  justify-center items-center z-30 bg-black/20 backdrop-blur-sm inset-0 hiddenModal" id="pelangganModal">
+<div class="fixed  justify-center items-center z-30  backdrop-blur-sm inset-0" id="pelangganModal">
     <button id="toggleModal" type="button" class="absolute inset-0 z-40 cursor-pointer"></button>
       <div class="fixed w-[30rem] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-xl z-50 px-6 py-4 bg-[#262537] rounded-2xl shadow-md">
 

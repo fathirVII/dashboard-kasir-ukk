@@ -68,6 +68,28 @@ function toggleCheckboxState() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+    // const toggleModal = document.getElementById("toggleModal");
+    // const toggleModal2 = document.getElementById("toggleModal2");
+    // const pelangganModal = document.getElementById("pelangganModal");
+
+    // toggleModal.addEventListener("click", () => {
+    //     pelangganModal.classList.remove("displayModal");
+    //     pelangganModal.classList.add("hiddenModal");
+    // });
+    // toggleModal2.addEventListener("click", () => {
+    //     pelangganModal.classList.remove("hiddenModal");
+    //     pelangganModal.classList.add("displayModal");
+    // });
+
+    const toggleModal = document.getElementById("toggleModal");
+    const pelangganModal = document.getElementById("pelangganModal");
+    pelangganModal.style.display = "none"; // Sembunyikan blur saat sidebar tersembunyi
+
+    toggleModal.addEventListener("click", () => {
+        pelangganModal.style.display = "none";
+    });
+
+
     const sidebarToggle = document.getElementById("modalCardToggle");
     const sidebarToggle2 = document.getElementById("modalCardToggle2");
     const modalCardJumlah = document.getElementById("modalCardJumlah");

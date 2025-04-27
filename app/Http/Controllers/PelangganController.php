@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
 use App\Models\Penjualan;
+use App\View\Components\pelanggan as ComponentsPelanggan;
 use Dom\Comment;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -92,7 +93,7 @@ class PelangganController extends Controller
 
         // Cek apakah user datang dari halaman kasir/create
         if (strpos($previousUrl, '/kasir/create') !== false) {
-            return redirect()->route('kasir.create',['namaPelanggan' => $namaPelanggan])->with('success', 'Pelanggan berhasil ditambahkan.');
+            return redirect()->route('kasir.create', ['namaPelanggan' => $namaPelanggan])->with('success', 'Pelanggan berhasil ditambahkan.');
         }
 
         return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil ditambahkan.');
@@ -130,29 +131,67 @@ class PelangganController extends Controller
 
     public function index(Request $request)
     {
- 
 
-        $query = Pelanggan::with('pembelian')->where('is_deleted', false);
+        // deklarasi data eloquent
+        $query = Pelanggan::with('pembelian')
+            ->where('is_deleted', false)
+            ->orderBy('created_at', 'desc');;
 
+        $dataPenjualan = Penjualan::all();
+        // deklarasi data eloquent
+
+
+        // fitur search berdasarakan nama dan alamat 
         if ($request->has('search')) {
             $search = $request->input('search');
-            $query->where('nama', 'like', "%$search%");
-        }
-      
 
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', "%$search%")
+                    ->orWhere('alamat', 'like', "%$search%");
+            });
+        }
+        // fitur search berdasarakan nama dan alamat 
+
+
+        // alert jika pelanggan / alamat tidak ada yang sesuai
         $jumlahPelanggan = $query->count();
 
         if ($jumlahPelanggan === 0 && $request->has('search')) {
-            return redirect()->route('pelanggan.index')->with('alert', 'Nama Pelanggan Tidak Ada yang sesuai');
+            return redirect()->route('pelanggan.index')->with('alert', 'Nama Pelanggan / alamat Tidak Ada yang sesuai');
         }
+        // alert jika pelanggan / alamat tidak ada yang sesuai
 
-        $dataPelanggan = $query->paginate(10);
-        $dataPenjualan = Penjualan::all();
+
+        // pagination
+        $dataPelanggan = $query->paginate(10)->appends($request->all());
+        // pagination
+
+
+
+        // filter riwayat penjualan per pelanggan
+        $namaSelected = null;
+        $totalPembelian = 0;
+        $pelangganSelected = $dataPenjualan;
+
+        if ($request->has('idPelanggan')) {
+            $idPelanggan = $request->input('idPelanggan');
+            $namaSelected = $query->where('id_pelanggan', $idPelanggan)->value('nama');
+            $pelangganSelected = $pelangganSelected->where('id_pelanggan', $idPelanggan);
+            $totalPembelian = $pelangganSelected->count();
+        } else {
+            $idPelanggan = $request->input('idPelanggan');
+            $pelangganSelected = $pelangganSelected->where('id_pelanggan', $idPelanggan);
+        };
+        // filter riwayat penjualan per pelanggan
+
 
         return view('pelanggan/dashboard-pelanggan', [
             'i' => ($dataPelanggan->currentPage() - 1) * $dataPelanggan->perPage() + 1,
             'dataPelanggan' => $dataPelanggan,
-            'dataPenjualan' => $dataPenjualan
+            'dataPenjualan' => $dataPenjualan,
+            'namaSelected' => $namaSelected,
+            'totalPembelian' => $totalPembelian,
+            'pelangganSelected' => $pelangganSelected,
         ]);
     }
 }

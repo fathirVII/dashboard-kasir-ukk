@@ -2,6 +2,8 @@
     <x-slot:title>
         Dashboard Detail Penjualan
     </x-slot:title>
+
+
     <div class=" bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
         <div class="">
             <h1 class="text-lg font-bold uppercase mb-4">Tabel Penjualan</h1>

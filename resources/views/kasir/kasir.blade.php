@@ -104,6 +104,6 @@
     </div>
 
     @include('kasir.kasir-script')
-    
+
 
 </x-app>

@@ -19,6 +19,6 @@ class Pelanggan extends Model
 
     public function pembelian():HasMany
     {
-        return $this->hasMany(Penjualan::class,'id_penjualan','id_penjualan');
+        return $this->hasMany(Penjualan::class,'id_pelanggan','id_pelanggan');
     }
 }

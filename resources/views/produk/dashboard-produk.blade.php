@@ -37,9 +37,9 @@
                         alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
                         class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8">
 
-                    <p class="mt-1 text-lg font-medium text-gray-200">Nama : {{ $item->nama }}</p>
+                    <p class="mt-1 text-lg font-medium text-gray-200 uppercase">Nama : {{ $item->nama }}</p>
                     <h3 class="mt-1 text-sm text-gray-200">Kategori : {{ $item->kategori }}</h3>
-                    <h3 class="mt-1 text-sm text-gray-200">Harga : {{ $item->harga }}</h3>
+                    <h3 class="mt-1 text-sm text-gray-200">Harga : Rp {{ number_format($item->harga, 0, ',', '.') }}</h3>
                     <h3 class="mt-1 text-sm text-gray-200">Stok : {{ $item->stok }}</h3>
                 </a>
             @endforeach

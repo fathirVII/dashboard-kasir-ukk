@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Contracts\View\View;
 
 class ProdukController extends Controller
 {
@@ -32,7 +33,7 @@ class ProdukController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:100',
-            'kategori' => 'required|in:handphone & aksesoris,komputer & aksesoris,audio visual,peralatan rumah tangga elektronik',
+            'kategori' => ['required', Rule::in(['coffe lokal', 'coffe luar', 'roti & pestri', 'lain-lain'])],
             'harga' => 'required|integer|min:0',
             'stok' => 'required|integer|min:0',
         ]);

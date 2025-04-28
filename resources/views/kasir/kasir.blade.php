@@ -30,7 +30,7 @@
                         class="h-[40rem] p-5 overflow-y-auto max-md:w-full grid grid-cols-1 gap-3 max-md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 max-md:px-2 mt-3">
                         @foreach ($produk as $item)
                             <label
-                                class="max-md:h-full h-fit group relative p-4 border border-gray-600 rounded-2xl bg-[#35374E] text-[clamp(0.7rem,0.8vw,1.3rem)] transition cursor-pointer {{ $item->stok > 0 ? 'hover:bg-[#4363D0]' : 'hover:bg-red-500' }}"
+                                class="max-md:h-full h-fit group relative p-4 border border-gray-600 rounded-2xl bg-[#35374E] text-[clamp(1rem,0.8vw,1.3rem)] transition cursor-pointer {{ $item->stok > 0 ? 'hover:bg-[#4363D0]' : 'hover:bg-red-500' }}"
                                 tabindex="0">
                                 <input type="checkbox" name="produk[]" value="{{ $item->id_produk }}"
                                     data-harga="{{ $item->harga }}" id="produk-{{ $item->id_produk }}"
@@ -38,7 +38,7 @@
                                     class="absolute bottom-2 right-2 w-6 h-6 text-blue-500 border-none focus:ring-0"
                                     @if ($item->stok == 0) disabled @endif>
                                 <p
-                                    class=" absolute left-1 top-1 z-20  font-medium rounded-lg px-2 capitalize {{ $item->stok > 0 ? 'text-green-400 bg-green-800' : 'text-orange-400 bg-red-800' }}">
+                                    class=" absolute left-1 top-1 z-20 text-xl font-medium rounded-lg px-2 capitalize {{ $item->stok > 0 ? 'text-green-400 bg-green-800' : 'text-orange-400 bg-red-800' }}">
                                     Stok {{ $item->stok > 0 ? $item->stok : 'habis' }}</p>
                                 <img src="{{ asset('image/defult-image.png') }}" alt="Product image"
                                     class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75">
@@ -103,7 +103,7 @@
                                 <button onclick="tambahBayar(50000)" type="button"
                                     class="bg-blue-600 font-bold px-2 rounded-md">50.000</button>
                             </div>
-                            <input type="number" name="nominal_pembayaran"
+                            <input type="number" name="nominal_pembayaran" required
                                 oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
                                 oninput="this.setCustomValidity('')" id="bayar" placeholder="Masukkan nominal bayar"
                                 class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
@@ -120,7 +120,7 @@
 
                         </div>
                         <button type="submit"
-                            class="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                            class="w-full mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
                             Simpan Transaksi
                         </button>
                     </div>

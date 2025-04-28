@@ -15,7 +15,7 @@
 
             <div>
                 <label class="block mb-1 font-semibold">Nama Produk</label>
-                <input type="text" name="nama" required
+                <input type="text" name="nama" required 
                     class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
             </div>
 

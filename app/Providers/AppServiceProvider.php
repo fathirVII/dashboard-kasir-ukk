@@ -17,9 +17,6 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (env('APP_ENV') !== 'local') {
-            URL::forceSheme('https');
-        }
     }
 
     public function register()

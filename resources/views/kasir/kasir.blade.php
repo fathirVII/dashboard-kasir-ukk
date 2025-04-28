@@ -14,17 +14,17 @@
     {{-- List Produk --}}
     <div class=" bg-[#262537] px-6 py-4 mt-4 rounded-2xl shadow-md">
 
-        <div class=" flex gap-4">
-            <div class="w-4/6 max-lg:w-full">
-                <div class="bg-[#35374E] p-2 mb-3 rounded-2xl min-lg:hidden">
-                    @include('kasir.search-pelanggan')
-                </div>
-                <div class="bg-[#35374E] p-2 rounded-2xl">
-                    @include('kasir.search-kategori')
-                </div>
+        <form action="{{ route('kasir.store') }}" method="POST" class="space-y-4" >
+            <div class=" flex gap-4">
+                <div class="w-4/6 max-lg:w-full">
+                    <div class="bg-[#35374E] p-2 mb-3 rounded-2xl min-lg:hidden">
+                        @include('kasir.search-pelanggan')
+                    </div>
+                    <div class="bg-[#35374E] p-2 rounded-2xl">
+                        @include('kasir.search-kategori')
+                    </div>
 
-                <!-- Pilih Produk Card -->
-                <form action="{{ route('kasir.store') }}" method="POST" class="space-y-4">
+                    <!-- Pilih Produk Card -->
                     @csrf
                     <div
                         class="h-[40rem] p-5 overflow-y-auto max-md:w-full grid grid-cols-1 gap-3 max-md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 max-md:px-2 mt-3">
@@ -52,101 +52,103 @@
                             </label>
                         @endforeach
                     </div>
-            </div>
-
-            {{-- jumlah & total --}}
-            <div class="w-2/6 max-lg:w-0">
-                <div class="bg-[#35374E] p-2 rounded-2xl max-lg:hidden">
-                    @include('kasir.search-pelanggan')
                 </div>
-                <div class="w-9 h-13 z-30 fixed right-4  min-lg:hidden">
-                    <button class="w-14 " type="button" id="activeArrow"
-                        onclick="document.getElementById('modalCardJumlah').classList.toggle('translate-x-full')"><i
-                            class="ri-arrow-left-box-fill text-[3rem] text-white cursor-pointer"></i></button>
-                </div>
-                <div id="modalCardJumlah"
-                    class="min-h-[40rem] max-lg:w-screen max-lg:fixed max-lg:bottom-2 max-lg:left-0
-                    bg-[#35374E] z-20 p-4 mt-3 rounded-2xl flex flex-col justify-between transition-transform duration-700 transform">
-                    <div class="flex justify-between">
-                        <h2 class="text-white text-lg font-semibold mb-4 ml-2">Jumlah Barang</h2>
-                    </div>
-                    <div class="h-[15rem] bg-[#4b4e69] overflow-y-auto rounded-md p-2">
 
-                        @foreach ($produk as $item)
-                            <div class="mb-4" id="jumlah_{{ $item->id_produk }}" style="display: none;">
-                                <label for="jumlah_{{ $item->id_produk }}_input"
-                                    class="block text-lg text-white mb-1 uppercase font-bold">
-                                    {{ $item->nama }}
-                                </label>
-                                <input type="number" name="jumlah[{{ $item->id_produk }}]"
-                                    id="jumlah_{{ $item->id_produk }}_input" min="1" value="1"
-                                    class="w-full p-2 rounded bg-[#262537] border border-gray-600 text-white jumlah-input"
-                                    data-id="{{ $item->id_produk }}" data-harga="{{ $item->harga }}" disabled>
-                            </div>
-                        @endforeach
+                {{-- jumlah & total --}}
+                <div class="w-2/6 max-lg:w-0">
+                    <div class="bg-[#35374E] p-2 rounded-2xl max-lg:hidden">
+                        @include('kasir.search-pelanggan')
                     </div>
-
-                    <div>
-                        <div class="border-t border-gray-500 pt-4">
-                            <p class="text-white text-sm">Total Tagihan:</p>
-                            <p id="totalTagihan" class="text-white text-xl font-bold">Rp 0</p>
+                    <div class="w-9 h-13 z-30 fixed right-4  min-lg:hidden">
+                        <button class="w-14 " type="button" id="activeArrow"
+                            onclick="document.getElementById('modalCardJumlah').classList.toggle('translate-x-full')"><i
+                                class="ri-arrow-left-box-fill text-[3rem] text-white cursor-pointer"></i></button>
+                    </div>
+                    <div id="modalCardJumlah"
+                        class="min-h-[40rem] max-lg:w-screen max-lg:fixed max-lg:bottom-2 max-lg:left-0
+                        bg-[#35374E] z-20 p-4 mt-3 rounded-2xl flex flex-col justify-between transition-transform duration-700 transform">
+                        <div class="flex justify-between">
+                            <h2 class="text-white text-lg font-semibold mb-4 ml-2">Jumlah Barang</h2>
                         </div>
-                        <div class="border-t border-gray-500 pt-4 mt-4">
-                            <!-- Pilihan Jenis Transaksi -->
+                        <div class="h-[15rem] bg-[#4b4e69] overflow-y-auto rounded-md p-2">
+
+                            @foreach ($produk as $item)
+                                <div class="mb-4" id="jumlah_{{ $item->id_produk }}" style="display: none;">
+                                    <label for="jumlah_{{ $item->id_produk }}_input"
+                                        class="block text-lg text-white mb-1 uppercase font-bold">
+                                        {{ $item->nama }}
+                                    </label>
+                                    <input type="number" name="jumlah[{{ $item->id_produk }}]"
+                                        id="jumlah_{{ $item->id_produk }}_input" min="1" value="1"
+                                        class="w-full p-2 rounded bg-[#262537] border border-gray-600 text-white jumlah-input"
+                                        data-id="{{ $item->id_produk }}" data-harga="{{ $item->harga }}" disabled>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div>
+                            <div class="border-t border-gray-500 pt-4">
+                                <p class="text-white text-sm">Total Tagihan:</p>
+                                <p id="totalTagihan" class="text-white text-xl font-bold">Rp 0</p>
+                            </div>
+                            <div class="border-t border-gray-500 pt-4 mt-4">
+                                {{-- <!-- Pilihan Jenis Transaksi -->
                             <div class="mb-4">
-                                <label for="jenis_transaksi" class="block mb-1 font-semibold text-white">Jenis
-                                    Transaksi</label>
+                                <label for="jenis_transaksi" class="block mb-1 font-semibold text-white"></label>
                                 <select name="jenis_transaksi" id="jenis_transaksi"
                                     class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
-                                    <option value="cash">Cash</option>
+                                    <option value="cash"></option>
                                     <option value="debit">Debit</option>
                                     <option value="ewallet">E-Wallet</option>
                                 </select>
+                            </div> --}}
+
+                                <!-- Pilihan Bayar Cash -->
+                                <div class="flex justify-between items-center">
+                                    <p class="text-white text-sm mb-2">Bayar Cash:</p>
+                                    <button onclick="tambahBayar(5000)" type="button"
+                                        class="bg-orange-400 font-bold px-2 rounded-md">5.000</button>
+                                    <button onclick="tambahBayar(10000)" type="button"
+                                        class="bg-purple-500 font-bold px-2 rounded-md">10.000</button>
+                                    <button onclick="tambahBayar(20000)" type="button"
+                                        class="bg-green-600 font-bold px-2 rounded-md">20.000</button>
+                                    <button onclick="tambahBayar(50000)" type="button"
+                                        class="bg-blue-600 font-bold px-2 rounded-md">50.000</button>
+                                    <button onclick="clearBayar()" type="button"
+                                        class="bg-red-600 font-bold px-2 rounded-md">Clear</button>
+                                </div>
+
+                                <!-- Input Nominal Pembayaran -->
+                                <input type="number" name="nominal_pembayaran" required
+                                    oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
+                                    oninput="this.setCustomValidity('')" id="bayar"
+                                    placeholder="Masukkan nominal bayar"
+                                    class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
                             </div>
 
-                            <!-- Pilihan Bayar Cash -->
-                            <div class="flex justify-between items-center">
-                                <p class="text-white text-sm mb-2">Bayar Cash:</p>
-                                <button onclick="tambahBayar(5000)" type="button"
-                                    class="bg-orange-400 font-bold px-2 rounded-md">5.000</button>
-                                <button onclick="tambahBayar(10000)" type="button"
-                                    class="bg-purple-500 font-bold px-2 rounded-md">10.000</button>
-                                <button onclick="tambahBayar(20000)" type="button"
-                                    class="bg-green-600 font-bold px-2 rounded-md">20.000</button>
-                                <button onclick="tambahBayar(50000)" type="button"
-                                    class="bg-blue-600 font-bold px-2 rounded-md">50.000</button>
+                            <div class="border-t border-gray-500 pt-4 mt-4 flex justify-between">
+                                <div class="">
+                                    <p class="text-white text-sm">Total Kembalian:</p>
+                                    <p id="kembalian" class="text-white text-xl font-bold">Rp 0</p>
+                                </div>
+                                <input type="checkbox" id="confirmCheckbox"
+                                    class="w-8 h-8 text-blue-500 border-none focus:ring-0 mt-4" required
+                                    oninvalid="this.setCustomValidity('Konfirmasi Transaksi.')"
+                                    oninput="this.setCustomValidity('')">
+
                             </div>
 
-                            <!-- Input Nominal Pembayaran -->
-                            <input type="number" name="nominal_pembayaran" required
-                                oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
-                                oninput="this.setCustomValidity('')" id="bayar" placeholder="Masukkan nominal bayar"
-                                class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
+                            <button type="submit"
+                                class="  w-full mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                                <div class="h-[3rem] items-center">Simpan Transaksi</div>
+                            </button>
                         </div>
-
-                        <div class="border-t border-gray-500 pt-4 mt-4 flex justify-between">
-                            <div class="">
-                                <p class="text-white text-sm">Total Kembalian:</p>
-                                <p id="kembalian" class="text-white text-xl font-bold">Rp 0</p>
-                            </div>
-                            <input type="checkbox" id="confirmCheckbox"
-                                class="w-8 h-8 text-blue-500 border-none focus:ring-0 mt-4" required
-                                oninvalid="this.setCustomValidity('Konfirmasi Transaksi.')"
-                                oninput="this.setCustomValidity('')">
-
-                        </div>
-                        <button type="submit"
-                            class="  w-full mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-                           <div class="h-[3rem] items-center">Simpan Transaksi</div> 
-                        </button>
                     </div>
-                    </form>
                 </div>
             </div>
+        </form>
 
-        </div>
-    </div>
 
-    @include('kasir.kasir-script')
+        @include('kasir.kasir-script')
 
 </x-app>

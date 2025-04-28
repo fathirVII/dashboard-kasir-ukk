@@ -5,6 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
+
     function toggleJumlah(checkbox) {
         const id = checkbox.value;
         const jumlahContainer = document.getElementById("jumlah_" + id);
@@ -59,6 +60,16 @@
         toggleCheckboxState();
 
         // Karena value berubah, kamu mungkin mau langsung update kembalian juga
+        if (typeof kembalian === "function") {
+            kembalian();
+            toggleCheckboxState();
+        }
+    }
+
+    function clearBayar() {
+        const bayarInput = document.getElementById("bayar");
+        bayarInput.value = 0;
+
         if (typeof kembalian === "function") {
             kembalian();
             toggleCheckboxState();

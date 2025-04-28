@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app>
     <x-slot:title>
         Regis
     </x-slot:title>

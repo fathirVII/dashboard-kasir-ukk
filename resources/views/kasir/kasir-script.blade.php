@@ -56,6 +56,7 @@
         const bayarInput = document.getElementById("bayar");
         let currentValue = parseInt(bayarInput.value) || 0;
         bayarInput.value = currentValue + nominal;
+        toggleCheckboxState();
 
         // Karena value berubah, kamu mungkin mau langsung update kembalian juga
         if (typeof kembalian === "function") {

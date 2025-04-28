@@ -6,13 +6,19 @@
     <title>AppKasir - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/currency-fill.png" type="image/x-icon" />
-    {{-- Link Tailwindcss/vite --}}
-    @vite('resources/css/app.css')
-    {{-- css --}}
-    <link href="css/styles.css" rel="stylesheet" />
-    {{--  Tailwind CDN --}}
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    {{--  rimix Icon --}}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        #navbar {
+            transition: margin-left 0.7s;
+        }
+
+        #navbar.sidebar-closed {
+            margin-left: 1rem;
+        }
+    </style>
 
 
 </head>
@@ -26,7 +32,7 @@
             {{ $title }}
         </x-navbar>
 
-        <main class="W-full pr-4">
+        <main class="w-full pr-4">
             {{ $slot }}
         </main>
     </div>
@@ -73,15 +79,9 @@
         });
     </script>
 
-    <style>
-        #navbar {
-            transition: margin-left 0.7s;
-        }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-        #navbar.sidebar-closed {
-            margin-left: 1rem;
-        }
-    </style>
 
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -91,6 +91,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
 
+    @vite(['resources/css/app.css','resources/js/export.js'])
+    
 </body>
-
 </html>

@@ -3,8 +3,11 @@
      <div class="font-medium text-lg py-4">
 
          <h2
-             class="text-xl font-bold p-4 mt-2 mr-3 text-center bg-[#4363D0] text-[#F7F8FF] shadow-2xl rounded-r-3xl mb-6">
+             class="text-xl font-bold p-4 mt-2 mr-3 text-center bg-[#4363D0] text-[#F7F8FF] shadow-2xl rounded-r-3xl mb-1">
              AppKasir</h2>
+         <p
+             class="text-md font-semibold px-4 py-1  mr-6 capitalize text-center bg-[#4363D0] text-[#F7F8FF] shadow-2xl rounded-r-3xl mb-6">
+            Username : {{ Auth::user()->name ?? " " }}</p>
 
          <nav class=" h-[37rem] flex flex-col justify-between space-y-2">
              <div class="flex flex-col space-y-2">

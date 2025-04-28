@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePelangganRequest;
 use App\Models\Pelanggan;
 use App\Models\Penjualan;
 use App\View\Components\pelanggan as ComponentsPelanggan;
@@ -42,6 +43,7 @@ class PelangganController extends Controller
     //     return view('produk.index', compact('produk'));
     // }
 
+
     public function destroy($id)
     {
         $pelanggan = Pelanggan::findOrFail($id);
@@ -52,19 +54,14 @@ class PelangganController extends Controller
     }
 
 
+
     public function create(): View
     {
         return view('pelanggan/tambah-pelanggan');
     }
 
-    public function store(Request $request)
+    public function store(StorePelangganRequest $request)
     {
-
-        $request->validate([
-            'username' => 'required|string|max:100',
-            'alamat' => 'required|string|max:100',
-            'no_telepon' => 'nullable|string|max:20',
-        ]);
 
 
         $lastPelanggan = Pelanggan::orderBy('id_pelanggan', 'desc')->first();
@@ -78,12 +75,15 @@ class PelangganController extends Controller
 
         $newId = 'PLG' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
 
-        Pelanggan::create([
-            'id_pelanggan' => $newId,
-            'nama' => $request->input('username'),
-            'alamat' => $request->input('alamat'),
-            'no_telepon' => $request->input('no_telepon'),
-        ]);
+        $validatedData = $request->validated();
+
+        $validatedData['no_telepon'] = str_replace(['_','-',' '], '', $validatedData['no_telepon']);
+
+        // merge array
+        $merged = (array_merge(['id_pelanggan' => $newId,], $validatedData));
+        // merge array
+
+        Pelanggan::create($merged);
 
         // Dapatkan URL sebelumnya
         $previousUrl = url()->previous(); // atau request()->headers->get('referer')

@@ -28,7 +28,7 @@
                 Dalam Pengembangan
             </div>
 
-            {{-- <form method="POST" action="{{ route('password.email') }}">
+            <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
                 <!-- Email Address -->
@@ -44,7 +44,7 @@
                         {{ __('Email Password Reset Link') }}
                     </x-primary-button>
                 </div>
-            </form> --}}
+            </form>
         </div>
     </div>
 </x-app>

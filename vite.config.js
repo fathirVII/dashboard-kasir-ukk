@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
+import legacy from "@vitejs/plugin-legacy";
 import fs from "fs";
 
 export default defineConfig({
@@ -10,7 +11,11 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
+        legacy({
+            targets: ["defaults", "not IE 11"],
+        }),
     ],
+
     // server: {
     //     https: {
     //         key: fs.readFileSync(
@@ -20,5 +25,6 @@ export default defineConfig({
     //             "A:/TUGAS UJIKOM/dashboard_kasir/storage/ssl/server.crt"
     //         ),
     //     },
+    //     host: 'dashboard_kasir.test',
     // },
 });

@@ -92,6 +92,19 @@
                             <p id="totalTagihan" class="text-white text-xl font-bold">Rp 0</p>
                         </div>
                         <div class="border-t border-gray-500 pt-4 mt-4">
+                            <!-- Pilihan Jenis Transaksi -->
+                            <div class="mb-4">
+                                <label for="jenis_transaksi" class="block mb-1 font-semibold text-white">Jenis
+                                    Transaksi</label>
+                                <select name="jenis_transaksi" id="jenis_transaksi"
+                                    class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
+                                    <option value="cash">Cash</option>
+                                    <option value="debit">Debit</option>
+                                    <option value="ewallet">E-Wallet</option>
+                                </select>
+                            </div>
+
+                            <!-- Pilihan Bayar Cash -->
                             <div class="flex justify-between items-center">
                                 <p class="text-white text-sm mb-2">Bayar Cash:</p>
                                 <button onclick="tambahBayar(5000)" type="button"
@@ -103,11 +116,14 @@
                                 <button onclick="tambahBayar(50000)" type="button"
                                     class="bg-blue-600 font-bold px-2 rounded-md">50.000</button>
                             </div>
+
+                            <!-- Input Nominal Pembayaran -->
                             <input type="number" name="nominal_pembayaran" required
                                 oninvalid="this.setCustomValidity('Jumlah pembayaran.')"
                                 oninput="this.setCustomValidity('')" id="bayar" placeholder="Masukkan nominal bayar"
                                 class="w-full p-2 rounded bg-[#35374E] border border-gray-600 text-white focus:outline-none focus:ring focus:ring-blue-400">
                         </div>
+
                         <div class="border-t border-gray-500 pt-4 mt-4 flex justify-between">
                             <div class="">
                                 <p class="text-white text-sm">Total Kembalian:</p>
@@ -120,8 +136,8 @@
 
                         </div>
                         <button type="submit"
-                            class="w-full mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-                            Simpan Transaksi
+                            class="  w-full mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                           <div class="h-[3rem] items-center">Simpan Transaksi</div> 
                         </button>
                     </div>
                     </form>

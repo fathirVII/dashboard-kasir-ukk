@@ -12,6 +12,9 @@ use App\Http\Controllers\DetailPenjualanController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/export', function () {
+    return view('exportjpg');
+});
 
 Route::middleware('auth')->group(function () {
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
